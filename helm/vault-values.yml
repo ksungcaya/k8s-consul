@@ -1,0 +1,5 @@
+server:
+  dataStorage:
+    enabled: true
+    size: 2Gi
+    storageClass: standard

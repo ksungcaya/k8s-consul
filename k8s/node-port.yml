@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: consul-node-port
+spec:
+    type: NodePort
+    ports:
+        # Expose the service on the specified port internally within the cluster. 
+        - port: 3000
+        # This is the port on the pod that the request gets sent to
+          targetPort: 8080
+        # Visible outside the Kubernetes cluster by the node’s IP address and the port number declared in this property.
+          nodePort: 31515
+    selector:
+        component: web

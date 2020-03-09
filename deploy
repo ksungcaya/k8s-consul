@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# create a unique tag    
+VERSION=$(date +%Y%m%d%H%M%S)
+IMAGE=gitlab.ksungcaya.com:5000/ksungcaya/k8s-consul
+TAG=$IMAGE:$VERSION
+
+docker build -t $TAG .
+docker build -t $IMAGE:latest .
+kubectl apply -f ./k8s/
+kubectl set image deployments/consul-deployment k8s-consul=$TAG
