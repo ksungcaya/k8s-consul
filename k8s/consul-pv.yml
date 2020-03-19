@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-    name: data-default-consul-consul-server-0
+    name: consul-server-0
     labels:
         type: local
 spec:
-    storageClassName: standard
+    storageClassName: consul-data
     capacity:
-        storage: 2Gi
+        storage: 256Mi
     accessModes:
         - ReadWriteOnce
     hostPath:
-        path: '/mnt/data'
+        path: '/mnt/data/consul-0'

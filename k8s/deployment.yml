@@ -23,6 +23,10 @@ spec:
             - name: k8s-consul
               image: gitlab.ksungcaya.com:5000/ksungcaya/k8s-consul
               env:
+                - name: JWT_PATH
+                  value: /var/run/secrets/kubernetes.io/serviceaccount/token
+                - name: VAULT_ADDR
+                  value: "http://vault:8200"
                 - name: POD_IP
                   valueFrom:
                     fieldRef:

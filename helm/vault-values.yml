@@ -1,5 +1,10 @@
 server:
+  affinity: ""
+  ha:
+    enabled: true
+  ui:
+    enabled: true
   dataStorage:
     enabled: true
-    size: 2Gi
-    storageClass: standard
+    size: 256Mi
+    storageClass: vault-data
