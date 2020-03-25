@@ -12,19 +12,19 @@ Simple Vault management setup using Consul as the backend storage of key-vaule p
 
 ## Running the Cluster
 1. Start minkube `minikube start --vm-driver=virtualbox`
-1. From the repository directory, run `kubectl apply -f k8s/`.
-2. Follow instructions: https://learn.hashicorp.com/consul/kubernetes/minikube. Note that all instance of `webapp` have been changed to `app`.
-3. When creating a Kubernetes authentication role, named `app`, that connects the Kubernetes service account name and `app` policy, run the following to match the `serviceAccountName: k8s-consul` that was set in the `deployment.yml` file.
-    
+2. From the repository directory, run `kubectl apply -f k8s/`.
+3. Follow instructions: https://learn.hashicorp.com/vault/getting-started-k8s/minikube. Note that all instance of `webapp` have been changed to `app`.
+4. When creating a Kubernetes authentication role, named `app`, that connects the Kubernetes service account name and `app` policy, run the following to match the `serviceAccountName: k8s-simple` that was set in the `deployment.yml` file.
+
     ```bash
     vault write auth/kubernetes/role/app \
-        bound_service_account_names=k8s-consul \
+        bound_service_account_names=k8s-simple \
         bound_service_account_namespaces=default \
         policies=app \
         ttl=24h
     ```
-4. Access consul ui: `minikube service hashicorp-consul-ui`.
-5. Verify if you can get the config by accessing `192.168.99.100:31515/:key`. The sample application assumes that the `config` is in the vault path `secret/data/app/config` where the values are in `json`. 
+5. Access consul ui: `minikube service hashicorp-consul-ui`.
+6. Verify if you can get the config by accessing `192.168.99.100:31515/:key`. The sample application assumes that the `config` is in the vault path `secret/data/app/config` where the values are in `json`. 
 
 
 ## Further Readings
